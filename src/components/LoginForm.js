@@ -1,14 +1,19 @@
 import { useState } from 'react'
+import { showNotification } from '../utils/helper_methods'
 import blogServices from '../services/blogs'
 import loginService from '../services/login'
 import Toggleable from '../components/Toggleable'
 
-const LoginFrom = ({ handleUser }) => {
+const LoginFrom = ({ handleUser, hanlderNotification }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   const handleLogin = async event => {
     event.preventDefault()
+    const newNotification = {
+      content: 'You have logged successfully',
+      type: 'success-notification'
+    }
 
     try {
       const user = await loginService.login({
@@ -20,12 +25,17 @@ const LoginFrom = ({ handleUser }) => {
         'loggedBlogAppUser', JSON.stringify(user)
       )
 
+      showNotification(hanlderNotification, newNotification)
       blogServices.setToken(user.token)
       handleUser(user)
       setUsername('')
       setPassword('')
     } catch (error) {
-      console.error(error)
+      newNotification.content = 'Incorrect username or password'
+      newNotification.type = 'failure-notification'
+
+      showNotification(hanlderNotification, newNotification)
+      console.error(error.message)
     }
   }
 
