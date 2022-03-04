@@ -1,0 +1,18 @@
+.failure-notification, .success-notification {
+  background-color: var(--secondary);
+  font-weight: bold;
+  margin: 20px auto 20px auto;
+  width: 200px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.failure-notification {
+  color: #ef233c;
+  border: solid 3px #ef233c;
+}
+
+.success-notification {
+  color: #81d071;
+  border: solid 3px #81d071;
+}
