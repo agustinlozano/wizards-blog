@@ -1,26 +1,28 @@
 import { useState, useEffect } from 'react'
+import blogService from './services/blogs'
 import Blog from './components/Blog'
 import BlogForm from './components/BlogForm'
 import LoginForm from './components/LoginForm'
-import blogService from './services/blogs'
+import UserProfile from './components/UserProfile'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(false)
 
-  useEffect(() => {
-    blogService.getAll().then(blogs =>
-      setBlogs(blogs)
-    )
-  }, [])
+  console.log(user)
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
-    if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      blogService.setToken(user.token)
-    }
+    blogService.getAll().then(blogs => {
+      const loggedUserJSON = window.localStorage.getItem('loggedBlogAppUser')
+
+      if (loggedUserJSON) {
+        const user = JSON.parse(loggedUserJSON)
+        setUser(user)
+        blogService.setToken(user.token)
+      }
+
+      setBlogs(blogs)
+    })
   }, [])
 
   const addBlog = blogObject => {
@@ -45,10 +47,18 @@ const App = () => {
       <h1>Wizard's blogs</h1>
       {
         user
-          ? <BlogForm
-              addBlog={addBlog}
-              handleLogout={handleLogout}
-            />
+          ? (
+            <>
+              <UserProfile
+                user={user}
+                handleUser={setUser}
+              />
+              <BlogForm
+                addBlog={addBlog}
+                handleLogout={handleLogout}
+              />
+            </>
+            )
           : <LoginForm
               handleUser={setUser}
             />
