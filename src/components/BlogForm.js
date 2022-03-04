@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Toggleable from './Toggleable'
 
-const BlogForm = ({ addBlog, handleLogout }) => {
+const BlogForm = ({ addBlog }) => {
   const [newTitle, setNewTitle] = useState()
   const [newAuthor, setNewAuthor] = useState()
   const [newUrl, setNewUrl] = useState()
@@ -47,9 +47,6 @@ const BlogForm = ({ addBlog, handleLogout }) => {
         />
         <button type='submit'>save</button>
       </form>
-      <div>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
     </Toggleable>
   )
 }

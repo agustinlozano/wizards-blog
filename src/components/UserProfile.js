@@ -5,7 +5,7 @@ const UserProfile = ({ user, handleUser }) => {
   const handleLogout = () => {
     handleUser(null)
     blogService.setToken(user.token)
-    window.localStorage.removeItem('loggedNoteAppUser')
+    window.localStorage.removeItem('loggedBlogAppUser')
   }
 
   return (
