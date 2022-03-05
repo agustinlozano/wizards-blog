@@ -81,7 +81,10 @@ const App = () => {
               hanlderNotification={setNotification}
             />
       }
-      <Blogs blogs={blogs} />
+      <Blogs
+        blogs={blogs}
+        hanlderNotification={setNotification}
+      />
     </div>
   )
 }
