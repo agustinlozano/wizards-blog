@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import DeleteBlog from './DeleteBlog'
 import Likes from './Likes'
 
-const Blog = ({ blog }) => {
+const Blog = ({ blog, hanlderNotification }) => {
   const [allContent, setAllContent] = useState(false)
 
   const label = allContent
@@ -19,6 +20,11 @@ const Blog = ({ blog }) => {
               <p>Link: {blog.url}</p>
               <Likes
                 blog={blog}
+                hanlderNotification={hanlderNotification}
+              />
+              <DeleteBlog
+                blog={blog}
+                hanlderNotification={hanlderNotification}
               />
             </>
             )
