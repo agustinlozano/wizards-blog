@@ -1,25 +1,46 @@
 import { useState } from 'react'
 import blogService from '../services/blogs'
+import { showNotification } from '../utils/helper_methods'
 
-const Likes = ({ blog }) => {
+const Likes = ({ blog, hanlderNotification }) => {
   const [like, setLike] = useState(false)
   const [likes, setLikes] = useState(blog.likes)
 
   const handleLike = async () => {
-    const blogDB = await blogService.getSingleBlog(blog.id)
+    const newNotification = {
+      content: 'You must be logged to like a blog!',
+      type: 'failure-notification'
+    }
 
-    if (like) {
-      const updatedInfo = { ...blogDB, likes: blogDB.likes - 1 }
+    try {
+      const blogDB = await blogService.getSingleBlog(blog.id)
 
-      blogService.update(updatedInfo, blog.id)
-      setLike(!like)
-      setLikes(updatedInfo.likes)
-    } else {
-      const updatedInfo = { ...blogDB, likes: blogDB.likes + 1 }
+      if (like) {
+        const updatedInfo = { ...blogDB, likes: blogDB.likes - 1 }
 
-      blogService.update(updatedInfo, blog.id)
-      setLike(!like)
-      setLikes(updatedInfo.likes)
+        await blogService.update(updatedInfo, blog.id)
+
+        newNotification.content = 'You have disliked that blog! ^^'
+        newNotification.type = 'success-notification'
+
+        setLike(!like)
+        setLikes(updatedInfo.likes)
+        showNotification(hanlderNotification, newNotification)
+      } else {
+        const updatedInfo = { ...blogDB, likes: blogDB.likes + 1 }
+
+        await blogService.update(updatedInfo, blog.id)
+
+        newNotification.content = 'You liked the blog! :)'
+        newNotification.type = 'success-notification'
+
+        setLike(!like)
+        setLikes(updatedInfo.likes)
+        showNotification(hanlderNotification, newNotification)
+      }
+    } catch (error) {
+      showNotification(hanlderNotification, newNotification)
+      console.error(error.message)
     }
   }
 
