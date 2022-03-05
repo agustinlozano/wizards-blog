@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Likes from './Likes'
 
 const Blog = ({ blog }) => {
   const [allContent, setAllContent] = useState(false)
@@ -16,6 +17,9 @@ const Blog = ({ blog }) => {
               <b>{blog.title}</b>
               <p>Author: {blog.author}</p>
               <p>Link: {blog.url}</p>
+              <Likes
+                blog={blog}
+              />
             </>
             )
           : <b>{blog.title}</b>
