@@ -51,4 +51,19 @@ const update = (updatedInfo, id) => {
     console.log('Blog updated: ', response.data))
 }
 
-export default { getAll, create, update, getSingleBlog, setToken }
+const _delete = id => {
+  const url = baseUrl + id
+  const config = {
+    headers: {
+      Authorization: token
+    }
+  }
+
+  const request = axios.delete(url, config)
+
+  return request.then(response =>
+    console.log('Blog deleted: ', response.data)
+  )
+}
+
+export default { getAll, create, update, getSingleBlog, _delete, setToken }
