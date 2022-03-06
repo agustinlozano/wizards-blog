@@ -10,9 +10,7 @@ import { showNotification } from './utils/helper_methods'
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(false)
-  const [notification, setNotification] = useState({})
-
-  console.log(user)
+  const [notification, setNotification] = useState({ content: '', type: '' })
 
   useEffect(() => {
     const newNotification = { content: '', type: '' }
