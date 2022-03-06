@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { useState } from 'react'
 import blogService from '../services/blogs'
 import { showNotification } from '../utils/helper_methods'
@@ -53,4 +54,10 @@ const Likes = ({ blog, hanlderNotification }) => {
     </div>
   )
 }
+
+Likes.propTypes = {
+  blog: propTypes.object.isRequired,
+  hanlderNotification: propTypes.func.isRequired
+}
+
 export default Likes

@@ -4,6 +4,7 @@ import blogServices from '../services/blogs'
 import loginService from '../services/login'
 import Toggleable from '../components/Toggleable'
 import FormField from './FormField'
+import propTypes from 'prop-types'
 
 const LoginFrom = ({ handleUser, hanlderNotification }) => {
   const [username, setUsername] = useState('')
@@ -62,6 +63,11 @@ const LoginFrom = ({ handleUser, hanlderNotification }) => {
       </form>
     </Toggleable>
   )
+}
+
+LoginFrom.propTypes = {
+  handleUser: propTypes.func.isRequired,
+  hanlderNotification: propTypes.func.isRequired
 }
 
 export default LoginFrom

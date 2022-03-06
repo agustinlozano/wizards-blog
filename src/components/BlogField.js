@@ -1,3 +1,5 @@
+import propTypes from 'prop-types'
+
 const BlogField = ({ fild, content }) =>
   <>
     {
@@ -6,5 +8,10 @@ const BlogField = ({ fild, content }) =>
         : <b>{content}</b>
     }
   </>
+
+BlogField.propTypes = {
+  fild: propTypes.string,
+  content: propTypes.string.isRequired
+}
 
 export default BlogField

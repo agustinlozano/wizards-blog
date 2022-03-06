@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { useState } from 'react'
 
 const Toggleable = ({ children, buttonLabel }) => {
@@ -16,6 +17,10 @@ const Toggleable = ({ children, buttonLabel }) => {
       </div>
     </div>
   )
+}
+
+Toggleable.propTypes = {
+  buttonLabel: propTypes.string.isRequired
 }
 
 export default Toggleable

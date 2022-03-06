@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import blogService from '../services/blogs'
 import { showNotification } from '../utils/helper_methods'
 
@@ -24,6 +25,11 @@ const DeleteBlog = ({ blog, hanlderNotification }) => {
   }
 
   return <button onClick={deleteBlog}>delete</button>
+}
+
+DeleteBlog.propTypes = {
+  blog: propTypes.object.isRequired,
+  hanlderNotification: propTypes.func.isRequired
 }
 
 export default DeleteBlog

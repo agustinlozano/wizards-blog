@@ -1,5 +1,5 @@
 import blogService from '../services/blogs'
-// import propTypes from 'prop-types'
+import propTypes from 'prop-types'
 
 const UserProfile = ({ user, handleUser }) => {
   const handleLogout = () => {
@@ -21,9 +21,9 @@ const UserProfile = ({ user, handleUser }) => {
   )
 }
 
-// UserProfile.propTypes = {
-//   user: propTypes.object.isRequired,
-//   handleUser: propTypes.func.isRequired
-// }
+UserProfile.propTypes = {
+  user: propTypes.object.isRequired,
+  handleUser: propTypes.func.isRequired
+}
 
 export default UserProfile

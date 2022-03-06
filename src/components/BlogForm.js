@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { useState } from 'react'
 import FormField from './FormField'
 import Toggleable from './Toggleable'
@@ -53,6 +54,10 @@ const BlogForm = ({ addBlog }) => {
       </form>
     </Toggleable>
   )
+}
+
+BlogForm.propTypes = {
+  addBlog: propTypes.func.isRequired
 }
 
 export default BlogForm

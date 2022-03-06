@@ -1,3 +1,4 @@
+import propTypes from 'prop-types'
 import { useState } from 'react'
 import BlogField from './BlogField'
 import DeleteBlog from './DeleteBlog'
@@ -44,4 +45,10 @@ const Blog = ({ blog, hanlderNotification }) => {
     </div>
   )
 }
+
+Blog.propTypes = {
+  blog: propTypes.object.isRequired,
+  hanlderNotification: propTypes.func.isRequired
+}
+
 export default Blog
