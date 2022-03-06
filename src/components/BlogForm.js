@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import FormField from './FormField'
 import Toggleable from './Toggleable'
 
 const BlogForm = ({ addBlog }) => {
-  const [newTitle, setNewTitle] = useState()
-  const [newAuthor, setNewAuthor] = useState()
-  const [newUrl, setNewUrl] = useState()
+  const [newTitle, setNewTitle] = useState('')
+  const [newAuthor, setNewAuthor] = useState('')
+  const [newUrl, setNewUrl] = useState('')
 
   const handleSubmit = event => {
     event.preventDefault()
@@ -25,25 +26,28 @@ const BlogForm = ({ addBlog }) => {
       <h3>Create a new blog</h3>
       <form onSubmit={handleSubmit}>
         <label hrmlfor='title'>Title</label>
-        <input
+        <FormField
+          type='text'
           name='title'
-          placeholder='title'
           value={newTitle}
-          onChange={({ target }) => setNewTitle(target.value)}
+          placeholder='title'
+          handleChange={({ target }) => setNewTitle(target.value)}
         />
         <label hrmlfor='author'>Author</label>
-        <input
+        <FormField
+          type='text'
           name='author'
-          placeholder='author'
           value={newAuthor}
-          onChange={({ target }) => setNewAuthor(target.value)}
+          placeholder='author'
+          handleChange={({ target }) => setNewAuthor(target.value)}
         />
         <label hrmlfor='url'>Url</label>
-        <input
+        <FormField
+          type='text'
           name='url'
-          placeholder='url'
           value={newUrl}
-          onChange={({ target }) => setNewUrl(target.value)}
+          placeholder='url'
+          handleChange={({ target }) => setNewUrl(target.value)}
         />
         <button type='submit'>save</button>
       </form>

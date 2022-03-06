@@ -3,6 +3,7 @@ import { showNotification } from '../utils/helper_methods'
 import blogServices from '../services/blogs'
 import loginService from '../services/login'
 import Toggleable from '../components/Toggleable'
+import FormField from './FormField'
 
 const LoginFrom = ({ handleUser, hanlderNotification }) => {
   const [username, setUsername] = useState('')
@@ -39,28 +40,25 @@ const LoginFrom = ({ handleUser, hanlderNotification }) => {
     }
   }
 
+  // Separar componentes del form
   return (
     <Toggleable buttonLabel='show login'>
       <form onSubmit={handleLogin}>
-        <div>
-          <input
-            type='text'
-            value={username}
-            name='Username'
-            placeholder='Username'
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type='password'
-            value={password}
-            name='Password'
-            placeholder='Password'
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button>Login</button>
+        <FormField
+          type='text'
+          name='Username'
+          value={username}
+          placeholder='Username'
+          handleChange={({ target }) => setUsername(target.value)}
+        />
+        <FormField
+          type='password'
+          name='Password'
+          value={password}
+          placeholder='Password'
+          handleChange={({ target }) => setPassword(target.value)}
+        />
+        <button type='submit'>Login</button>
       </form>
     </Toggleable>
   )
