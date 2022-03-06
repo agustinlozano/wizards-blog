@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import BlogField from './BlogField'
 import DeleteBlog from './DeleteBlog'
 import Likes from './Likes'
 
@@ -15,9 +16,18 @@ const Blog = ({ blog, hanlderNotification }) => {
         allContent
           ? (
             <>
-              <b>{blog.title}</b>
-              <p>Author: {blog.author}</p>
-              <p>Link: {blog.url}</p>
+              <BlogField
+                fild={false}
+                content={blog.title}
+              />
+              <BlogField
+                fild='Author'
+                content={blog.author}
+              />
+              <BlogField
+                fild='Link'
+                content={blog.url}
+              />
               <Likes
                 blog={blog}
                 hanlderNotification={hanlderNotification}
