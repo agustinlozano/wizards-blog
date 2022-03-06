@@ -9,9 +9,11 @@ const DeleteBlog = ({ blog, hanlderNotification }) => {
     }
 
     try {
-      await blogService._delete(blog.id)
-
-      showNotification(hanlderNotification, newNotification)
+      const result = window.confirm(`Do you want to remove ${blog.title} from the list?`)
+      if (result) {
+        await blogService._delete(blog.id)
+        showNotification(hanlderNotification, newNotification)
+      }
     } catch (error) {
       newNotification.content = 'The blog could not be deleted'
       newNotification.type = 'failure-notification'
