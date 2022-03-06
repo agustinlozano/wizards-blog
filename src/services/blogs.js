@@ -7,12 +7,12 @@ const setToken = newToken => {
   token = `Bearer ${newToken}`
 }
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const getAll = async () => {
+  const response = await axios.get(baseUrl)
+  return response.data
 }
 
-const getSingleBlog = id => {
+const getSingleBlog = async id => {
   const url = baseUrl + id
   const config = {
     headers: {
@@ -20,24 +20,23 @@ const getSingleBlog = id => {
     }
   }
 
-  const request = axios.get(url, config)
-  return request.then(response => response.data)
+  const response = await axios.get(url, config)
+  return response.data
 }
 
-const create = newNote => {
+const create = async newNote => {
   const config = {
     headers: {
       Authorization: token
     }
   }
 
-  const request = axios.post(baseUrl, newNote, config)
+  const response = await axios.post(baseUrl, newNote, config)
 
-  return request.then(response =>
-    console.log('New blog added: ', response.data))
+  return console.log('New blog added: ', response.data)
 }
 
-const update = (updatedInfo, id) => {
+const update = async (updatedInfo, id) => {
   const url = baseUrl + id
   const config = {
     headers: {
@@ -45,13 +44,12 @@ const update = (updatedInfo, id) => {
     }
   }
 
-  const request = axios.put(url, updatedInfo, config)
+  const response = await axios.put(url, updatedInfo, config)
 
-  return request.then(response =>
-    console.log('Blog updated: ', response.data))
+  return console.log('Blog updated: ', response.data)
 }
 
-const _delete = id => {
+const _delete = async id => {
   const url = baseUrl + id
   const config = {
     headers: {
@@ -59,11 +57,9 @@ const _delete = id => {
     }
   }
 
-  const request = axios.delete(url, config)
+  const response = await axios.delete(url, config)
 
-  return request.then(response =>
-    console.log('Blog deleted: ', response.data)
-  )
+  return console.log('Blog deleted: ', response.data)
 }
 
 export default { getAll, create, update, getSingleBlog, _delete, setToken }
