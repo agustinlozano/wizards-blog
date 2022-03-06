@@ -38,7 +38,7 @@ const App = () => {
 
   const addBlog = blogObject => {
     const newNotification = {
-      content: 'A new blog has been added',
+      content: 'A new blog has been added!',
       type: 'success-notification'
     }
 
