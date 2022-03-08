@@ -18,15 +18,14 @@ const Blog = ({ blog, hanlderNotification }) => {
           ? (
             <>
               <BlogField
-                fild={false}
                 content={blog.title}
               />
               <BlogField
-                fild='Author'
+                field='Author'
                 content={blog.author}
               />
               <BlogField
-                fild='Link'
+                field='Link'
                 content={blog.url}
               />
               <Likes
