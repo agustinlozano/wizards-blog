@@ -1,10 +1,10 @@
 import propTypes from 'prop-types'
 
-const BlogField = ({ fild, content }) =>
+const BlogField = ({ field, content }) =>
   <>
     {
-      (fild !== false)
-        ? <p>{`${fild}: `} {content}</p>
+      field
+        ? <p>{`${field}: `} {content}</p>
         : <b>{content}</b>
     }
   </>
