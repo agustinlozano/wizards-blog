@@ -41,24 +41,28 @@ const LoginFrom = ({ handleUser, hanlderNotification }) => {
     }
   }
 
-  // Separar componentes del form
   return (
     <Toggleable buttonLabel='show login'>
-      <form onSubmit={handleLogin}>
-        <FormField
-          type='text'
-          name='Username'
-          value={username}
-          placeholder='Username'
-          handleChange={({ target }) => setUsername(target.value)}
-        />
-        <FormField
-          type='password'
-          name='Password'
-          value={password}
-          placeholder='Password'
-          handleChange={({ target }) => setPassword(target.value)}
-        />
+      <form
+        onSubmit={handleLogin}
+        data-testid='login-form-test-id'
+      >
+        <label htmlFor='Username'>Username
+          <FormField
+            type='text'
+            name='Username'
+            value={username}
+            handleChange={({ target }) => setUsername(target.value)}
+          />
+        </label>
+        <label>Password
+          <FormField
+            type='password'
+            name='Password'
+            value={password}
+            handleChange={({ target }) => setPassword(target.value)}
+          />
+        </label>
         <button type='submit'>Login</button>
       </form>
     </Toggleable>
