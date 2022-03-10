@@ -1,4 +1,4 @@
-const BlogUser = ({ user }) =>
-  <p>Blog added by <b>{user.username}</b></p>
+const BlogUser = ({ username }) =>
+  <p>Blog added by <b>{username}</b></p>
 
 export default BlogUser
