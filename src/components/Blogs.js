@@ -1,7 +1,7 @@
 import propTypes from 'prop-types'
 import Blog from '../components/Blog'
 
-const Blogs = ({ blogs, hanlderNotification }) =>
+const Blogs = ({ blogs, currentUser, hanlderNotification }) =>
   <div>
     <h2>blogs</h2>
     {
@@ -9,6 +9,7 @@ const Blogs = ({ blogs, hanlderNotification }) =>
         <Blog
           key={blog.id}
           blog={blog}
+          currentUser={currentUser}
           hanlderNotification={hanlderNotification}
         />
       )

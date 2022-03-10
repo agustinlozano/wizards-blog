@@ -54,6 +54,10 @@ const App = () => {
       })
   }
 
+  const currentUser = user
+    ? user.username
+    : 'anonymous user'
+
   return (
     <div>
       <h1>Wizard's blogs</h1>
@@ -81,6 +85,7 @@ const App = () => {
       }
       <Blogs
         blogs={blogs}
+        currentUser={currentUser}
         hanlderNotification={setNotification}
       />
     </div>
