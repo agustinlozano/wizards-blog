@@ -15,7 +15,7 @@ Cypress.Commands.add('login', ({ username, password }) => {
   })
 })
 
-Cypress.Commands.add('createNote', ({ title, author, url }) => {
+Cypress.Commands.add('createBlog', ({ title, author, url }) => {
   cy.request({
     method: 'POST',
     url: 'http://localhost:3003/api/blogs',
