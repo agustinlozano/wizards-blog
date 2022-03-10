@@ -42,6 +42,7 @@ const App = () => {
 
     blogService.create(blogObject)
       .then(() => {
+        blogObject.user = { username: user.username }
         setBlogs(blogs.concat(blogObject))
         showNotification(setNotification, newNotification)
       })
