@@ -59,7 +59,7 @@ const _delete = async id => {
 
   const response = await axios.delete(url, config)
 
-  return console.log('Blog deleted: ', response.data)
+  return console.log('The blog has been deleted', response.data)
 }
 
 export default { getAll, create, update, getSingleBlog, _delete, setToken }
