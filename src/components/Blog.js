@@ -1,10 +1,11 @@
 import propTypes from 'prop-types'
 import { useState } from 'react'
 import BlogField from './BlogField'
+import BlogUser from './BlogUser'
 import DeleteBlog from './DeleteBlog'
 import Likes from './Likes'
 
-const Blog = ({ blog, hanlderNotification }) => {
+const Blog = ({ blog, currentUser, hanlderNotification }) => {
   const [allContent, setAllContent] = useState(false)
 
   const label = allContent
@@ -28,14 +29,27 @@ const Blog = ({ blog, hanlderNotification }) => {
                 field='Link'
                 content={blog.url}
               />
-              <Likes
-                blog={blog}
-                hanlderNotification={hanlderNotification}
-              />
-              <DeleteBlog
-                blog={blog}
-                hanlderNotification={hanlderNotification}
-              />
+              <BlogUser user={blog.user} />
+
+              {
+                currentUser === blog.user.username
+                  ? (
+                    <>
+                      <Likes
+                        blog={blog}
+                        hanlderNotification={hanlderNotification}
+                      />
+                      <DeleteBlog
+                        blog={blog}
+                        hanlderNotification={hanlderNotification}
+                      />
+                    </>
+                    )
+                  : <Likes
+                      blog={blog}
+                      hanlderNotification={hanlderNotification}
+                    />
+              }
             </>
             )
           : <b>{blog.title}</b>
