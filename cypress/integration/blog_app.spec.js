@@ -1,4 +1,4 @@
-describe('Blog app', function () {
+describe('blog app', function () {
   const user = {
     username: 'BloggyCatitoX',
     name: 'Cato',
@@ -16,7 +16,7 @@ describe('Blog app', function () {
     cy.createUser(user)
   })
 
-  it('Login form is shown', function () {
+  it('login form is shown', function () {
     cy.contains('show login').click()
 
     cy.get('[data-testid="login-form-test-id"]').as('loginForm')
@@ -26,7 +26,7 @@ describe('Blog app', function () {
     cy.get('@loginForm').should('contain', 'Login')
   })
 
-  describe('Login', function () {
+  describe('login', function () {
     it('succeeds with correct credentials', function () {
       cy.contains('show login').click()
 
@@ -57,7 +57,7 @@ describe('Blog app', function () {
     })
   })
 
-  describe.only('When logged in', function () {
+  describe('when logged in', function () {
     beforeEach(function () {
       cy.login({
         username: user.username,
@@ -65,7 +65,7 @@ describe('Blog app', function () {
       })
     })
 
-    it('A blog can be created', function () {
+    it('a blog can be created', function () {
       cy.contains('new blog').click()
       cy.contains('Create a new blog')
 
@@ -78,6 +78,49 @@ describe('Blog app', function () {
       cy.get('.success-notification')
         .should('contain', 'A new blog has been added!')
         .should('have.css', 'border', '3px solid rgb(129, 208, 113)')
+
+      cy.visit('http://localhost:3000')
+
+      cy.get('b').should('contain', blog.title)
     })
+  })
+
+  describe('a logged user can like a post', function () {
+    beforeEach(function () {
+      cy.login({
+        username: user.username,
+        password: user.password
+      })
+
+      cy.createBlog({
+        title: blog.title,
+        author: blog.author,
+        url: blog.url
+      })
+    })
+
+    it('', function () {
+      cy.contains('+info').click()
+      cy.contains('like').click()
+
+      cy.get('.success-notification')
+        .should('contain', 'You liked the blog! :)')
+        .should('have.css', 'border', '3px solid rgb(129, 208, 113)')
+
+      /* no funciona el test, si refresco la pagina */
+      // cy.visit('http://localhost:3000')
+      // cy.contains('+info').click()
+
+      cy.contains('dislike').click()
+
+      cy.get('.success-notification')
+        .should('contain', 'You have disliked that blog! ^^')
+        .should('have.css', 'border', '3px solid rgb(129, 208, 113)')
+    })
+  })
+
+  describe('a logged user who created a blog can delete it', function () {
+    /* Ejercicio adicional opcional: también verifique
+      que otros usuarios no puedan eliminar el blog. */
   })
 })
