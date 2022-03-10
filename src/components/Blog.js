@@ -29,8 +29,7 @@ const Blog = ({ blog, currentUser, hanlderNotification }) => {
                 field='Link'
                 content={blog.url}
               />
-              <BlogUser user={blog.user} />
-
+              <BlogUser username={blog.user.username} />
               {
                 currentUser === blog.user.username
                   ? (
