@@ -1,5 +1,5 @@
 ## Let your blogs nearby!
-This project was designed to achieve a 100% web blog list application. The tool helps you to archive your blogs easily while you browse the web.
+This project was designed to achieve a 100% web blog list application. The tool helps you rank your blogs easily while you browse the web.
 
 ## You can clone this repository
 If you want to run the project on your computer so check the following scripts. In the project directory, you can run:
